@@ -1,2 +1,3 @@
 # music_together
-some playful app
+
+real-time collaborating beat maker application with express.js, socket.io

@@ -4,21 +4,55 @@ var http = require("http").createServer(app);
 var io = require("socket.io")(http);
 var path = __dirname + "/";
 
-var users = {};
-var user_no = 1;
+const INIT_COLOR = "#f3df9d";
+var players = {};
+var slot = [null, null, null, null];
+var state = [
+    { color: INIT_COLOR },
+    { color: INIT_COLOR },
+    { color: INIT_COLOR },
+    { color: INIT_COLOR }
+];
+var player_no = 1;
 
 http.listen(3000, () => {
     console.log("listening on *:3000\n");
 });
 
-registerUser = (socket, nickname) => {
-    users[socket.id] = nickname;
-    // console.log(socket.socket_id);
-    socket.nickname = nickname;
-    user_no++;
-    io.emit("user_list", users);
-    // console.log("do it");
-    // console.log(users);
+assign_slot = player => {
+    for (i = 0; i < 4; i++) {
+        if (slot[i] === null) {
+            slot[i] = player;
+            break;
+        }
+    }
+    return i;
+};
+
+free_slot = player => {
+    for (i = 0; i < 4; i++) {
+        if (slot[i] === player) {
+            slot[i] = null;
+            break;
+        }
+    }
+};
+
+free_state = slot => {
+    state[slot]["color"] = INIT_COLOR;
+};
+
+updateState = data => {
+    // data = [playerInfo, colorInfo]
+    state[data[0]["slot"]]["color"] = data[1];
+};
+
+registerPlayer = (socket, player) => {
+    players[socket.id] = { name: player, slot: assign_slot(player) };
+    socket.player = player;
+    io.emit("player_list", players);
+    io.emit("apply_state", state);
+    player_no++;
 };
 
 app.get("/", function(req, res) {
@@ -27,17 +61,20 @@ app.get("/", function(req, res) {
 });
 
 io.on("connection", socket => {
-    console.log(`Player-${user_no} is connected`);
-    registerUser(socket, "Player-" + user_no);
+    console.log(`Player-${player_no} is connected`);
+    registerPlayer(socket, "Player-" + player_no);
 
     socket.on("change_color_request", data => {
-        io.emit("change_color_response", data);
+        updateState(data);
+        io.emit("change_color_response", [data[0]["name"], data[1]]);
     });
 
     socket.on("disconnect", _ => {
-        io.emit("logout", [socket.id, users[socket.id]]);
-        console.log(users[socket.id] + " is disconnected");
-        delete users[socket.id];
+        free_slot(players[socket.id]["name"]);
+        free_state(players[socket.id]["slot"]);
+        io.emit("logout", [socket.id, players[socket.id]]);
+        console.log(players[socket.id]["name"] + " is disconnected");
+        delete players[socket.id];
     });
 });
 

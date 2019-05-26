@@ -187,89 +187,44 @@
                 <div class="status"></div>
             </div>
             <div class="common_field">
-                <div id="kick1" data-key="81" data-color="#ff0011" class="cell">q</div>
-                <div id="kick2" data-key="87" data-color="#ffda24" class="cell">w</div>
-                <div id="kick3" data-key="69" data-color="#00c253" class="cell">e</div>
-                <div id="clap1" data-key="82" data-col or="#ffda24" class="cell">r</div>
-                <div id="clap2" data-key="84" data-color="#00c353" class="cell">t</div>
-                <div id="clap3" data-key="89" data-color="#ffda24" class="cell">y</div>
-                <div id="bass1" data-key="85" data-color="#ffda24" class="cell">u</div>
-                <div id="bass2" data-key="73" data-color="#00c353" class="cell">i</div>
-                <div id="kick12" data-key="65" data-color="#ff0011" class="cell">a</div>
-                <div id="kick22" data-key="83" data-color="#ffda24" class="cell">s</div>
-                <div id="kick32" data-key="68" data-color="#00c253" class="cell">d</div>
-                <div id="clap12" data-key="70" data-col or="#ffda24" class="cell">f</div>
-                <div id="clap22" data-key="71" data-color="#00c353" class="cell">g</div>
-                <div id="clap32" data-key="72" data-color="#ffda24" class="cell">h</div>
-                <div id="bass12" data-key="74" data-color="#ffda24" class="cell">j</div>
-                <div id="bass22" data-key="75" data-color="#00c353" class="cell">k</div>
+                <div id="base_Bb" data-key="81" data-color="#ff0011" class="cell">q</div>
+                <div id="base_C" data-key="87" data-color="#ffda24" class="cell">w</div>
+                <div id="base_F" data-key="69" data-color="#00c253" class="cell">e</div>
+                <div id="base_G" data-key="82" data-col or="#ffda24" class="cell">r</div>
+                <div id="clap1" data-key="84" data-color="#00c353" class="cell">t</div>
+                <div id="clap2" data-key="89" data-color="#ffda24" class="cell">y</div>
+                <div id="hihat1" data-key="85" data-color="#ffda24" class="cell">u</div>
+                <div id="hihat2" data-key="73" data-color="#00c353" class="cell">i</div>
+                <div id="hihat3" data-key="65" data-color="#ff0011" class="cell">a</div>
+                <div id="kick1" data-key="83" data-color="#ffda24" class="cell">s</div>
+                <div id="kick2" data-key="68" data-color="#00c253" class="cell">d</div>
+                <div id="kick3" data-key="70" data-col or="#ffda24" class="cell">f</div>
+                <div id="kick4" data-key="71" data-color="#00c353" class="cell">g</div>
+                <div id="snare1" data-key="72" data-color="#ffda24" class="cell">h</div>
+                <div id="snare2" data-key="74" data-color="#ffda24" class="cell">j</div>
+                <div id="snare3" data-key="75" data-color="#00c353" class="cell">k</div>
             </div>
         </div>
     </body>
     <script>
         $(".player").hide();
         var context = new AudioContext();
-        var kick1 = new getSound(
-            "kick1",
-            "https://dl.dropboxusercontent.com/s/q9ffbq1esfufado/kick3.wav?dl=0"
-        );
-        var kick2 = new getSound(
-            "kick2",
-            "https://dl.dropboxusercontent.com/s/fx62nliy7zgv0rg/kick1.wav?dl=0"
-        );
-        var kick3 = new getSound(
-            "kick3",
-            "https://dl.dropboxusercontent.com/s/ragnfpvaqlxnwzb/kick4.wav?dl=0"
-        );
-        var clap1 = new getSound(
-            "clap1",
-            "https://dl.dropboxusercontent.com/s/xlv8x19wvg9ynh8/clap1.wav?dl=0"
-        );
-        var clap2 = new getSound(
-            "clap2",
-            "https://dl.dropboxusercontent.com/s/og84e9s5g4z8wyx/clap2.wav?dl=0"
-        );
-        var clap3 = new getSound(
-            "clap3",
-            "https://dl.dropboxusercontent.com/s/4741pvdfsv5x82b/clap3.wav?dl=0"
-        );
-        var bass1 = new getSound(
-            "bass1",
-            "https://dl.dropboxusercontent.com/s/oc7yrdrk64w66ck/bass1.wav?dl=0"
-        );
-        var bass2 = new getSound(
-            "bass2",
-            "https://dl.dropboxusercontent.com/s/73ejwnwpcxlxte9/distor.wav?dl=0"
-        );
-        var kick12 = new getSound(
-            "kick12",
-            "https://dl.dropboxusercontent.com/s/q9ffbq1esfufado/kick3.wav?dl=0"
-        );
-        var kick22 = new getSound(
-            "kick22",
-            "https://dl.dropboxusercontent.com/s/fx62nliy7zgv0rg/kick1.wav?dl=0"
-        );
-        var kick32 = new getSound(
-            "kick32",
-            "https://dl.dropboxusercontent.com/s/ragnfpvaqlxnwzb/kick4.wav?dl=0"
-        );
-        var clap12 = new getSound(
-            "clap12",
-            "https://dl.dropboxusercontent.com/s/xlv8x19wvg9ynh8/clap1.wav?dl=0"
-        );
-        var clap22 = new getSound(
-            "clap22",
-            "https://dl.dropboxusercontent.com/s/og84e9s5g4z8wyx/clap2.wav?dl=0"
-        );
-        var clap32 = new getSound(
-            "clap32",
-            "https://dl.dropboxusercontent.com/s/4741pvdfsv5x82b/clap3.wav?dl=0"
-        );
-        var bass12 = new getSound(
-            "bass12",
-            "https://dl.dropboxusercontent.com/s/oc7yrdrk64w66ck/bass1.wav?dl=0"
-        );
-        var bass22 = new getSound("bass22", "kick1.wav");
+        getSound("base_Bb", "https://dl.dropboxusercontent.com/s/xf47npsudfbephq/base_Bb.wav?dl=0"); //base_Bb
+        getSound("base_C", "https://dl.dropboxusercontent.com/s/liqomlpqeqoivdb/base_C.wav?dl=0"); //base_C
+        getSound("base_F", "https://dl.dropboxusercontent.com/s/dth57oxcd0xz8kx/base_F.wav?dl=0"); //base_F
+        getSound("base_G", "https://dl.dropboxusercontent.com/s/uqwvslxzq5utwbv/base_G.wav?dl=0"); //base_G
+        getSound("clap1", "https://dl.dropboxusercontent.com/s/cz2o47vvotvs1su/clap1.wav?dl=0"); //clap1
+        getSound("clap2", "https://dl.dropboxusercontent.com/s/0ak5g7rhrpwuabh/clap2.wav?dl=0"); //clap2
+        getSound("hihat1", "https://dl.dropboxusercontent.com/s/ker8doa9esjnvf6/hihat1.wav?dl=0"); //hihat1
+        getSound("hihat2", "https://dl.dropboxusercontent.com/s/5047c6aw3g2hhre/hihat2.wav?dl=0"); //hihat2
+        getSound("hihat3", "https://dl.dropboxusercontent.com/s/nh81jemmh6rbmdg/hihat3.wav?dl=0"); //hihat3
+        getSound("kick1", "https://dl.dropboxusercontent.com/s/ijs5qq66ng5cko9/kick1.wav?dl=0"); //kick1
+        getSound("kick2", "https://dl.dropboxusercontent.com/s/u3sm7zot6hhfnq8/kick2.wav?dl=0"); //kick2
+        getSound("kick3", "https://dl.dropboxusercontent.com/s/ctmw205mxq37056/kick3.wav?dl=0"); //kick3
+        getSound("kick4", "https://dl.dropboxusercontent.com/s/jgoakol4afbvgaw/kick4.wav?dl=0"); //kick4
+        getSound("snare1", "https://dl.dropboxusercontent.com/s/sljedb7qqim9pl6/snare1.wav?dl=0"); //snare1
+        getSound("snare2", "https://dl.dropboxusercontent.com/s/zdu5dcn43kelxtl/snare2.wav?dl=0"); //snare2
+        getSound("snare3", "https://dl.dropboxusercontent.com/s/s1lpz0h0ogcnfrj/snare3.wav?dl=0"); //snare3
 
         $(document).keydown(function(e) {
             // console.log(e.which);

@@ -69,6 +69,10 @@ io.on("connection", socket => {
         io.emit("change_color_response", [data[0]["name"], data[1]]);
     });
 
+    socket.on("input_note", note => {
+        io.emit("play_note", note);
+    });
+
     socket.on("disconnect", _ => {
         free_slot(players[socket.id]["name"]);
         free_state(players[socket.id]["slot"]);

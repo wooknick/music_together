@@ -80,7 +80,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                font-size: 10vh;
+                font-size: 9vh;
                 color: rgba(83, 83, 68, 0.1);
             }
 
@@ -151,6 +151,10 @@
                         var player = $(".player").eq(i);
                         player.children(".status").css({ backgroundColor: state[i]["color"] });
                     }
+                });
+
+                socket.on("play_note", note => {
+                    $("[data-key='" + note + "']").trigger("click");
                 });
 
                 socket.on("logout", player => {
@@ -274,10 +278,10 @@
         );
 
         $(document).keydown(function(e) {
-            console.log(e.which);
-            $("[data-key='" + e.which + "']")
-                .trigger("click")
-                .effect("highlight", { color: "#669966" }, 300);
+            // console.log(e.which);
+            socket.emit("input_note", e.which);
+
+            $("[data-key='" + e.which + "']").effect("highlight", { color: "#669966" }, 300);
         });
 
         function getSound(domNode, fileDirectory) {
@@ -306,7 +310,7 @@
             xhr.send();
         }
         setInterval(() => {
-            console.log("hello");
+            // console.log("hello");
             $(".common_field").effect("highlight", { color: "#669966" }, 300);
         }, 556);
     </script>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Socket.IO chat</title>
+        <title>Music Togehter</title>
         <style>
             * {
                 margin: 0;
@@ -97,6 +97,8 @@
         </style>
         <script src="/socket.io/socket.io.js"></script>
         <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
         <script>
             var socket;
             var this_player;
@@ -180,22 +182,22 @@
                 <div class="status"></div>
             </div>
             <div class="common_field">
-                <div class="cell">1</div>
-                <div class="cell">2</div>
-                <div class="cell">3</div>
-                <div class="cell">4</div>
-                <div class="cell">5</div>
-                <div class="cell">6</div>
-                <div class="cell">7</div>
-                <div class="cell">8</div>
-                <div class="cell">9</div>
-                <div class="cell">10</div>
-                <div class="cell">11</div>
-                <div class="cell">12</div>
-                <div class="cell">13</div>
-                <div class="cell">14</div>
-                <div class="cell">15</div>
-                <div class="cell">16</div>
+                <div id="kick1" data-key="81" data-color="#ff0011" class="cell">kick1</div>
+                <div id="kick2" data-key="87" data-color="#ffda24" class="cell">kick2</div>
+                <div id="kick3" data-key="69" data-color="#00c253" class="cell">kick3</div>
+                <div id="clap1" data-key="82" data-col or="#ffda24" class="cell">clap1</div>
+                <div id="clap2" data-key="84" data-color="#00c353" class="cell">clap2</div>
+                <div id="clap3" data-key="89" data-color="#ffda24" class="cell">clap3</div>
+                <div id="bass1" data-key="85" data-color="#ffda24" class="cell">base1</div>
+                <div id="bass2" data-key="73" data-color="#00c353" class="cell">base2</div>
+                <div id="kick12" data-key="65" data-color="#ff0011" class="cell">kick1</div>
+                <div id="kick22" data-key="83" data-color="#ffda24" class="cell">kick2</div>
+                <div id="kick32" data-key="68" data-color="#00c253" class="cell">kick3</div>
+                <div id="clap12" data-key="70" data-col or="#ffda24" class="cell">clap1</div>
+                <div id="clap22" data-key="71" data-color="#00c353" class="cell">clap2</div>
+                <div id="clap32" data-key="72" data-color="#ffda24" class="cell">clap3</div>
+                <div id="bass12" data-key="74" data-color="#ffda24" class="cell">base1</div>
+                <div id="bass22" data-key="75" data-color="#00c353" class="cell">base2</div>
             </div>
         </div>
         <!-- <form action="" class="input_chat">
@@ -205,5 +207,107 @@
     </body>
     <script>
         $(".player").hide();
+        var context = new AudioContext();
+        var kick1 = new getSound(
+            "kick1",
+            "https://dl.dropboxusercontent.com/s/q9ffbq1esfufado/kick3.wav?dl=0"
+        );
+        var kick2 = new getSound(
+            "kick2",
+            "https://dl.dropboxusercontent.com/s/fx62nliy7zgv0rg/kick1.wav?dl=0"
+        );
+        var kick3 = new getSound(
+            "kick3",
+            "https://dl.dropboxusercontent.com/s/ragnfpvaqlxnwzb/kick4.wav?dl=0"
+        );
+        var clap1 = new getSound(
+            "clap1",
+            "https://dl.dropboxusercontent.com/s/xlv8x19wvg9ynh8/clap1.wav?dl=0"
+        );
+        var clap2 = new getSound(
+            "clap2",
+            "https://dl.dropboxusercontent.com/s/og84e9s5g4z8wyx/clap2.wav?dl=0"
+        );
+        var clap3 = new getSound(
+            "clap3",
+            "https://dl.dropboxusercontent.com/s/4741pvdfsv5x82b/clap3.wav?dl=0"
+        );
+        var bass1 = new getSound(
+            "bass1",
+            "https://dl.dropboxusercontent.com/s/oc7yrdrk64w66ck/bass1.wav?dl=0"
+        );
+        var bass2 = new getSound(
+            "bass2",
+            "https://dl.dropboxusercontent.com/s/73ejwnwpcxlxte9/distor.wav?dl=0"
+        );
+        var kick12 = new getSound(
+            "kick12",
+            "https://dl.dropboxusercontent.com/s/q9ffbq1esfufado/kick3.wav?dl=0"
+        );
+        var kick22 = new getSound(
+            "kick22",
+            "https://dl.dropboxusercontent.com/s/fx62nliy7zgv0rg/kick1.wav?dl=0"
+        );
+        var kick32 = new getSound(
+            "kick32",
+            "https://dl.dropboxusercontent.com/s/ragnfpvaqlxnwzb/kick4.wav?dl=0"
+        );
+        var clap12 = new getSound(
+            "clap12",
+            "https://dl.dropboxusercontent.com/s/xlv8x19wvg9ynh8/clap1.wav?dl=0"
+        );
+        var clap22 = new getSound(
+            "clap22",
+            "https://dl.dropboxusercontent.com/s/og84e9s5g4z8wyx/clap2.wav?dl=0"
+        );
+        var clap32 = new getSound(
+            "clap32",
+            "https://dl.dropboxusercontent.com/s/4741pvdfsv5x82b/clap3.wav?dl=0"
+        );
+        var bass12 = new getSound(
+            "bass12",
+            "https://dl.dropboxusercontent.com/s/oc7yrdrk64w66ck/bass1.wav?dl=0"
+        );
+        var bass22 = new getSound(
+            "bass22",
+            "https://dl.dropboxusercontent.com/s/73ejwnwpcxlxte9/distor.wav?dl=0"
+        );
+
+        $(document).keydown(function(e) {
+            console.log(e.which);
+            $("[data-key='" + e.which + "']")
+                .trigger("click")
+                .effect("highlight", { color: "#669966" }, 300);
+        });
+
+        function getSound(domNode, fileDirectory) {
+            this.domNode = domNode;
+            this.fileDirectory = fileDirectory;
+            var play = play;
+            var incomingBuffer;
+            var savedBuffer;
+            var xhr;
+            play = () => {
+                var source = context.createBufferSource();
+                source.buffer = savedBuffer;
+                source.connect(context.destination);
+                source.start(0);
+            };
+            var xhr = new XMLHttpRequest();
+            xhr.open("get", fileDirectory, true);
+            xhr.responseType = "arraybuffer";
+            xhr.onload = () => {
+                context.decodeAudioData(xhr.response, function(incomingBuffer) {
+                    savedBuffer = incomingBuffer;
+                    var note = document.getElementById(domNode);
+                    note.addEventListener("click", play, false);
+                });
+            };
+            xhr.send();
+        }
+        setInterval(() => {
+            console.log("hello");
+            $(".common_field").effect("highlight", { color: "#669966" }, 300);
+        }, 556);
     </script>
 </html>

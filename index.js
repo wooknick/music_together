@@ -70,7 +70,8 @@ io.on("connection", socket => {
     });
 
     socket.on("input_note", note => {
-        io.emit("play_note", note);
+        var color = state[note[1].slot]["color"];
+        io.emit("play_note", [note[0], color]);
     });
 
     socket.on("disconnect", _ => {

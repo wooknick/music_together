@@ -154,7 +154,8 @@
                 });
 
                 socket.on("play_note", note => {
-                    $("[data-key='" + note + "']").trigger("click");
+                    $("[data-key='" + note[0] + "']").trigger("click");
+                    $("[data-key='" + note[0] + "']").effect("highlight", { color: note[1] }, 300);
                 });
 
                 socket.on("logout", player => {
@@ -186,28 +187,24 @@
                 <div class="status"></div>
             </div>
             <div class="common_field">
-                <div id="kick1" data-key="81" data-color="#ff0011" class="cell">kick1</div>
-                <div id="kick2" data-key="87" data-color="#ffda24" class="cell">kick2</div>
-                <div id="kick3" data-key="69" data-color="#00c253" class="cell">kick3</div>
-                <div id="clap1" data-key="82" data-col or="#ffda24" class="cell">clap1</div>
-                <div id="clap2" data-key="84" data-color="#00c353" class="cell">clap2</div>
-                <div id="clap3" data-key="89" data-color="#ffda24" class="cell">clap3</div>
-                <div id="bass1" data-key="85" data-color="#ffda24" class="cell">base1</div>
-                <div id="bass2" data-key="73" data-color="#00c353" class="cell">base2</div>
-                <div id="kick12" data-key="65" data-color="#ff0011" class="cell">kick1</div>
-                <div id="kick22" data-key="83" data-color="#ffda24" class="cell">kick2</div>
-                <div id="kick32" data-key="68" data-color="#00c253" class="cell">kick3</div>
-                <div id="clap12" data-key="70" data-col or="#ffda24" class="cell">clap1</div>
-                <div id="clap22" data-key="71" data-color="#00c353" class="cell">clap2</div>
-                <div id="clap32" data-key="72" data-color="#ffda24" class="cell">clap3</div>
-                <div id="bass12" data-key="74" data-color="#ffda24" class="cell">base1</div>
-                <div id="bass22" data-key="75" data-color="#00c353" class="cell">base2</div>
+                <div id="kick1" data-key="81" data-color="#ff0011" class="cell">q</div>
+                <div id="kick2" data-key="87" data-color="#ffda24" class="cell">w</div>
+                <div id="kick3" data-key="69" data-color="#00c253" class="cell">e</div>
+                <div id="clap1" data-key="82" data-col or="#ffda24" class="cell">r</div>
+                <div id="clap2" data-key="84" data-color="#00c353" class="cell">t</div>
+                <div id="clap3" data-key="89" data-color="#ffda24" class="cell">y</div>
+                <div id="bass1" data-key="85" data-color="#ffda24" class="cell">u</div>
+                <div id="bass2" data-key="73" data-color="#00c353" class="cell">i</div>
+                <div id="kick12" data-key="65" data-color="#ff0011" class="cell">a</div>
+                <div id="kick22" data-key="83" data-color="#ffda24" class="cell">s</div>
+                <div id="kick32" data-key="68" data-color="#00c253" class="cell">d</div>
+                <div id="clap12" data-key="70" data-col or="#ffda24" class="cell">f</div>
+                <div id="clap22" data-key="71" data-color="#00c353" class="cell">g</div>
+                <div id="clap32" data-key="72" data-color="#ffda24" class="cell">h</div>
+                <div id="bass12" data-key="74" data-color="#ffda24" class="cell">j</div>
+                <div id="bass22" data-key="75" data-color="#00c353" class="cell">k</div>
             </div>
         </div>
-        <!-- <form action="" class="input_chat">
-            <input id="m" autocomplete="off" />
-            <button>Send</button>
-        </form> -->
     </body>
     <script>
         $(".player").hide();
@@ -272,16 +269,11 @@
             "bass12",
             "https://dl.dropboxusercontent.com/s/oc7yrdrk64w66ck/bass1.wav?dl=0"
         );
-        var bass22 = new getSound(
-            "bass22",
-            "https://dl.dropboxusercontent.com/s/73ejwnwpcxlxte9/distor.wav?dl=0"
-        );
+        var bass22 = new getSound("bass22", "kick1.wav");
 
         $(document).keydown(function(e) {
             // console.log(e.which);
-            socket.emit("input_note", e.which);
-
-            $("[data-key='" + e.which + "']").effect("highlight", { color: "#669966" }, 300);
+            socket.emit("input_note", [e.which, this_player]);
         });
 
         function getSound(domNode, fileDirectory) {
@@ -310,7 +302,6 @@
             xhr.send();
         }
         setInterval(() => {
-            // console.log("hello");
             $(".common_field").effect("highlight", { color: "#669966" }, 300);
         }, 556);
     </script>

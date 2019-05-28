@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Music Togehter</title>
+        <title>Music Loop</title>
         <style>
             * {
                 margin: 0;
@@ -154,10 +154,7 @@
                 });
 
                 socket.on("play_note", note => {
-                    $("[data-key='" + note + "']").trigger("click");
-                });
-
-                socket.on("highlight_note", note => {
+                    $("[data-key='" + note[0] + "']").trigger("click");
                     $("[data-key='" + note[0] + "']").effect("highlight", { color: note[1] }, 300);
                 });
 
@@ -259,8 +256,8 @@
             };
             xhr.send();
         }
-        // setInterval(() => {
-        //     $(".common_field").effect("highlight", { color: "#669966" }, 300);
-        // }, 556);
+        setInterval(() => {
+            $(".common_field").effect("highlight", { color: "#669966" }, 300);
+        }, 556);
     </script>
 </html>

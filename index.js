@@ -1,5 +1,4 @@
 var app = require("express")();
-var reload = require("reload");
 var http = require("http").createServer(app);
 var io = require("socket.io")(http);
 var path = __dirname + "/";
@@ -59,6 +58,10 @@ app.get("/", function(req, res) {
     res.sendFile(path + "index.html");
     // console.log(`\n▸▸ ${req.headers.host}`);
 });
+app.get("/loop", function(req, res) {
+    res.sendFile(path + "loop_mode.html");
+    // console.log(`\n▸▸ ${req.headers.host}`);
+});
 
 io.on("connection", socket => {
     console.log(`Player-${player_no} is connected`);
@@ -70,8 +73,9 @@ io.on("connection", socket => {
     });
 
     socket.on("input_note", note => {
-        var color = state[note[1].slot]["color"];
-        io.emit("play_note", [note[0], color]);
+        var color = state[note[1]]["color"];
+        io.binary(false).emit("play_note", note[0]);
+        io.binary(false).emit("highlight_note", [note[0], color]);
     });
 
     socket.on("disconnect", _ => {
@@ -82,5 +86,3 @@ io.on("connection", socket => {
         delete players[socket.id];
     });
 });
-
-reload(app);

@@ -118,12 +118,17 @@
                 "#fafc71"
             ];
             let color_index = 0;
+            var touch = true;
             $(function() {
                 socket = io();
 
                 $("#name").on("click", () => {
                     socket.emit("change_color_request", [this_player, color_list[color_index]]);
                     color_index = (color_index + 1) % 10;
+                });
+
+                $(".cell").on("touchstart", e => {
+                    socket.emit("input_note", [e.target.classList[1], this_player.slot]);
                 });
 
                 socket.on("change_color_response", data => {
@@ -190,22 +195,22 @@
                 <div class="status"></div>
             </div>
             <div class="common_field">
-                <div id="base_Bb" data-key="81" data-color="#ff0011" class="cell">q</div>
-                <div id="base_C" data-key="87" data-color="#ffda24" class="cell">w</div>
-                <div id="base_F" data-key="69" data-color="#00c253" class="cell">e</div>
-                <div id="base_G" data-key="82" data-col or="#ffda24" class="cell">r</div>
-                <div id="clap1" data-key="84" data-color="#00c353" class="cell">t</div>
-                <div id="clap2" data-key="89" data-color="#ffda24" class="cell">y</div>
-                <div id="hihat1" data-key="85" data-color="#ffda24" class="cell">u</div>
-                <div id="hihat2" data-key="73" data-color="#00c353" class="cell">i</div>
-                <div id="hihat3" data-key="65" data-color="#ff0011" class="cell">a</div>
-                <div id="kick1" data-key="83" data-color="#ffda24" class="cell">s</div>
-                <div id="kick2" data-key="68" data-color="#00c253" class="cell">d</div>
-                <div id="kick3" data-key="70" data-col or="#ffda24" class="cell">f</div>
-                <div id="kick4" data-key="71" data-color="#00c353" class="cell">g</div>
-                <div id="snare1" data-key="72" data-color="#ffda24" class="cell">h</div>
-                <div id="snare2" data-key="74" data-color="#ffda24" class="cell">j</div>
-                <div id="snare3" data-key="75" data-color="#00c353" class="cell">k</div>
+                <div id="base_Bb" data-key="81" data-color="#ff0011" class="cell 81">q</div>
+                <div id="base_C" data-key="87" data-color="#ffda24" class="cell 87">w</div>
+                <div id="base_F" data-key="69" data-color="#00c253" class="cell 69">e</div>
+                <div id="base_G" data-key="82" data-col or="#ffda24" class="cell 82">r</div>
+                <div id="clap1" data-key="84" data-color="#00c353" class="cell 84">t</div>
+                <div id="clap2" data-key="89" data-color="#ffda24" class="cell 89">y</div>
+                <div id="hihat1" data-key="85" data-color="#ffda24" class="cell 85">u</div>
+                <div id="hihat2" data-key="73" data-color="#00c353" class="cell 73">i</div>
+                <div id="hihat3" data-key="65" data-color="#ff0011" class="cell 65">a</div>
+                <div id="kick1" data-key="83" data-color="#ffda24" class="cell 83">s</div>
+                <div id="kick2" data-key="68" data-color="#00c253" class="cell 68">d</div>
+                <div id="kick3" data-key="70" data-col or="#ffda24" class="cell 70">f</div>
+                <div id="kick4" data-key="71" data-color="#00c353" class="cell 71">g</div>
+                <div id="snare1" data-key="72" data-color="#ffda24" class="cell 72">h</div>
+                <div id="snare2" data-key="74" data-color="#ffda24" class="cell 74">j</div>
+                <div id="snare3" data-key="75" data-color="#00c353" class="cell 75">k</div>
             </div>
         </div>
     </body>

@@ -73,6 +73,7 @@ io.on("connection", socket => {
     });
 
     socket.on("input_note", note => {
+        console.log(note);
         var color = state[note[1]]["color"];
         io.binary(false).emit("play_note", note[0]);
         io.binary(false).emit("highlight_note", [note[0], color]);

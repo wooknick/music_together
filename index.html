@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Music Togehter</title>
+        <title>Music Together</title>
+        <link
+            href="https://fonts.googleapis.com/css?family=Barriecito&display=swap"
+            rel="stylesheet"
+        />
         <style>
             * {
                 margin: 0;
@@ -19,15 +23,45 @@
                 margin-top: 15px;
                 text-align: center;
             }
+            #explain {
+                height: 10vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: "Barriecito", cursive;
+                font-size: 8vh;
+                color: #f3df9d;
+            }
             #name {
                 height: 5vh;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                font-family: "Barriecito", cursive;
                 font-size: 4vh;
+                color: #f3df9d;
             }
             #name:hover {
                 cursor: pointer;
+            }
+            #qr {
+                position: absolute;
+                top: 2vh;
+                left: 70vw;
+                width: 8vh;
+                height: 8vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            #qr .qr_image {
+                width: 100%;
+                height: 100%;
+            }
+            #qr .short_url {
+                display: flex;
+                text-align: center;
             }
             .wrap {
                 display: grid;
@@ -35,7 +69,7 @@
                 grid-auto-rows: 50%;
                 grid-gap: 1vh;
                 padding: 10px;
-                height: 95vh;
+                height: 70vh;
                 width: 100vw;
             }
 
@@ -57,6 +91,7 @@
                 align-items: center;
                 font-size: 15px;
                 border-bottom: 1px solid black;
+                font-family: "Barriecito", cursive;
             }
 
             .player .status {
@@ -93,6 +128,9 @@
                 .common_field .cell {
                     font-size: 5vh;
                 }
+                #explain {
+                    font-size: 5vh;
+                }
             }
         </style>
         <script src="/socket.io/socket.io.js"></script>
@@ -118,10 +156,11 @@
                 "#fafc71"
             ];
             let color_index = 0;
-            var touch = true;
+            var your_name = "guest";
             $(function() {
                 socket = io();
-
+                // your_name = prompt("이름을 입력해 주세요.");
+                // socket.emit("name_register", your_name);
                 $("#name").on("click", () => {
                     socket.emit("change_color_request", [this_player, color_list[color_index]]);
                     color_index = (color_index + 1) % 10;
@@ -136,6 +175,7 @@
                         .filter(`.${data[0]}`)
                         .children(".status")
                         .css({ backgroundColor: data[1] });
+                    $("div#name").css({ color: data[1] });
                 });
 
                 socket.on("player_list", players => {
@@ -176,6 +216,9 @@
         </script>
     </head>
     <body>
+        <div id="explain">
+            <span>Music Together</span>
+        </div>
         <div id="name">&nbsp;</div>
         <div class="wrap">
             <div class="player slot1">

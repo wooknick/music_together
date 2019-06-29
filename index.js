@@ -65,6 +65,10 @@ app.get("/loop", function(req, res) {
 
 io.on("connection", socket => {
     console.log(`Player-${player_no} is connected`);
+    // socket.on("name_register", name => {
+    //     console.log(name);
+    //     // registerPlayer(socket, name);
+    // });
     registerPlayer(socket, "Player-" + player_no);
 
     socket.on("change_color_request", data => {

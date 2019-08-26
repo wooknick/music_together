@@ -212,6 +212,13 @@
                         .removeClass(player[1]["name"])
                         .fadeOut(1000);
                 });
+                socket.on("full", id => {
+                    if (id === socket.id) {
+                        console.log(id, socket.id);
+                        alert("Sorry. There is no seat for You. Please visit next time.");
+                        history.back();
+                    }
+                });
             });
         </script>
     </head>

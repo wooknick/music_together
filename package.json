@@ -4,21 +4,23 @@
     "main": "index.js",
     "license": "MIT",
     "devDependencies": {
-        "express": "^4.16.4",
-        "express-reload": "^1.2.0",
-        "nodemon": "^1.19.0",
-        "socket.io": "^2.2.0"
+        "nodemon": "^1.19.0"
     },
     "dependencies": {
         "@babel/cli": "^7.5.5",
         "@babel/core": "^7.4.4",
         "@babel/node": "^7.2.2",
         "@babel/preset-env": "^7.4.4",
-        "reload": "^3.0.1"
+        "copy": "^0.3.2",
+        "express": "^4.17.1",
+        "express-reload": "^1.2.0",
+        "reload": "^3.0.1",
+        "socket.io": "^2.2.0"
     },
     "scripts": {
         "dev": "nodemon --exec babel-node src/index.js",
         "build": "babel src -d build",
+        "postbuild": "cd src && copy ./*.html ../build/",
         "start": "node build/index.js"
     }
 }

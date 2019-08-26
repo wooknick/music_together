@@ -56,11 +56,7 @@ registerPlayer = (socket, player) => {
 };
 
 app.get("/", function(req, res) {
-    res.sendFile(path + "index.html");
-    // console.log(`\n▸▸ ${req.headers.host}`);
-});
-app.get("/loop", function(req, res) {
-    res.sendFile(path + "loop_mode.html");
+    res.sendFile(path + "./index.html");
     // console.log(`\n▸▸ ${req.headers.host}`);
 });
 

@@ -1,4 +1,4 @@
-# music_together
+# Music Together
 real-time collaborating beat maker application with express.js, socket.io
 
 ## Usages

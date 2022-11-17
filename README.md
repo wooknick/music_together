@@ -11,7 +11,3 @@ real-time collaborating beat maker application with express.js, socket.io
 ## Technologies
 - express.js
 - socket.io
-
-## Live Demo
-[Try it yourself](https://music-together-demo.herokuapp.com)
-(Only supported with Chrome.)
